@@ -1,7 +1,9 @@
 package org.example.model.country;
 
 import org.example.model.Country;
+
 import java.util.Objects;
+
 //By Huseyn
 public class EuropeanCountry extends Country {
     private boolean isInEuropeanUnion;
