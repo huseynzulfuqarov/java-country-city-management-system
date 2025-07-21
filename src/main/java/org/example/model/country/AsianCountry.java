@@ -1,9 +1,8 @@
 package org.example.model.country;
 
 import org.example.model.Country;
-
 import java.util.Objects;
-
+//By Huseyn
 public class AsianCountry extends Country {
     private double gdpPerCapita;
     private boolean hasNuclearPower;
