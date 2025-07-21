@@ -1,8 +1,6 @@
 package org.example.model.country;
 
-import org.example.model.City;
 import org.example.model.Country;
-
 import java.util.Objects;
 
 public class EuropeanCountry extends Country {
@@ -10,14 +8,14 @@ public class EuropeanCountry extends Country {
     private String mainExport;
     private int foundingYear;
 
-    public EuropeanCountry(int id, String name, String continent, long population, String code, City[] cities, int cityCount, boolean isInEuropeanUnion, String mainExport, int foundingYear) {
-        super(id, name, continent, population, code, cities, cityCount);
+    public EuropeanCountry(String name, String continent, long population, String code, boolean isInEuropeanUnion, String mainExport, int foundingYear) {
+        super(name, continent, population, code);
         this.isInEuropeanUnion = isInEuropeanUnion;
         this.mainExport = mainExport;
         this.foundingYear = foundingYear;
     }
 
-    public boolean getInEuropeanUnion() {
+    public boolean isInEuropeanUnion() {
         return isInEuropeanUnion;
     }
 
@@ -41,8 +39,6 @@ public class EuropeanCountry extends Country {
         this.foundingYear = foundingYear;
     }
 
-
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -53,10 +49,9 @@ public class EuropeanCountry extends Country {
 
     @Override
     public String toString() {
-        return "EuropeanCountry{" +
-                "isInEuropeanUnion=" + isInEuropeanUnion +
-                ", mainExport='" + mainExport + '\'' +
-                ", foundingYear=" + foundingYear +
-                '}' + super.toString();
+        return "EuropeanCountry -> " + super.toString() +
+                " | Is in EU: " + this.isInEuropeanUnion() +
+                " | Main Export: " + this.getMainExport() +
+                " | Founding Year: " + this.getFoundingYear();
     }
 }

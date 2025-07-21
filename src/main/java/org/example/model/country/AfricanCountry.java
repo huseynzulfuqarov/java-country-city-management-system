@@ -1,6 +1,5 @@
 package org.example.model.country;
 
-import org.example.model.City;
 import org.example.model.Country;
 
 import java.util.Objects;
@@ -10,8 +9,8 @@ public class AfricanCountry extends Country {
     private boolean isDeveloping;
     private String currency;
 
-    public AfricanCountry(int id, String name, String continent, long population, String code, City[] cities, int cityCount, String mainLanguage, boolean isDeveloping, String currency) {
-        super(id, name, continent, population, code, cities, cityCount);
+    public AfricanCountry(String name, String continent, long population, String code, String mainLanguage, boolean isDeveloping, String currency) {
+        super(name, continent, population, code);
         this.mainLanguage = mainLanguage;
         this.isDeveloping = isDeveloping;
         this.currency = currency;
@@ -41,7 +40,6 @@ public class AfricanCountry extends Country {
         this.currency = currency;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -52,10 +50,9 @@ public class AfricanCountry extends Country {
 
     @Override
     public String toString() {
-        return "AfricanCountry{" +
-                "mainLanguage='" + mainLanguage + '\'' +
-                ", isDeveloping=" + isDeveloping +
-                ", currency='" + currency + '\'' +
-                '}' + super.toString();
+        return "AfricanCountry -> " + super.toString() +
+                " | Main Language: " + this.getMainLanguage() +
+                " | Is Developing: " + this.isDeveloping() +
+                " | Currency: " + this.getCurrency();
     }
 }

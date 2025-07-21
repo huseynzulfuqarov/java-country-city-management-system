@@ -1,6 +1,5 @@
 package org.example.model.country;
 
-import org.example.model.City;
 import org.example.model.Country;
 
 import java.util.Objects;
@@ -10,8 +9,8 @@ public class AsianCountry extends Country {
     private boolean hasNuclearPower;
     private String mainReligion;
 
-    public AsianCountry(int id, String name, String continent, long population, String code, City[] cities, int cityCount, double gdpPerCapita, boolean hasNuclearPower, String mainReligion) {
-        super(id, name, continent, population, code, cities, cityCount);
+    public AsianCountry(String name, String continent, long population, String code, double gdpPerCapita, boolean hasNuclearPower, String mainReligion) {
+        super(name, continent, population, code);
         this.gdpPerCapita = gdpPerCapita;
         this.hasNuclearPower = hasNuclearPower;
         this.mainReligion = mainReligion;
@@ -25,7 +24,7 @@ public class AsianCountry extends Country {
         this.gdpPerCapita = gdpPerCapita;
     }
 
-    public boolean getHasNuclearPower() {
+    public boolean hasNuclearPower() {
         return hasNuclearPower;
     }
 
@@ -51,10 +50,9 @@ public class AsianCountry extends Country {
 
     @Override
     public String toString() {
-        return "AsianCountry{" +
-                "gdpPerCapita=" + gdpPerCapita +
-                ", hasNuclearPower=" + hasNuclearPower +
-                ", mainReligion='" + mainReligion + '\'' +
-                '}' + super.toString();
+        return "AsianCountry -> " + super.toString() +
+                " | GDP per Capita: " + this.getGdpPerCapita() +
+                " | Has Nuclear Power: " + this.hasNuclearPower() +
+                " | Main Religion: " + this.getMainReligion();
     }
 }

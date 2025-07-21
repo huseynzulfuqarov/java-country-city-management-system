@@ -3,30 +3,26 @@ package org.example.model;
 import java.util.Arrays;
 
 public class Country {
-    private int id;
+    private static int nextId = 1;
+    private final int id;
     private String name;
     private String continent;
     private long population;
     private String code;
-    City[] cities; //(maksimum 10 şəhər)
-    int cityCount;
+    private City[] cities = new City[10];  //(max 10 city)
+    private int cityCount;
 
-    public Country(int id, String name, String continent, long population, String code, City[] cities, int cityCount) {
-        this.id = id;
+    public Country(String name, String continent, long population, String code) {
+        this.id = nextId++;
         this.name = name;
         this.continent = continent;
         this.population = population;
         this.code = code;
-        this.cities = cities;
-        this.cityCount = cityCount;
+        this.cityCount = 0;
     }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -62,38 +58,58 @@ public class Country {
     }
 
     public City[] getCities() {
-        return cities;
-    }
-
-    public void setCities(City[] cities) {
-        this.cities = cities;
+        return Arrays.copyOf(this.cities, this.cityCount);
     }
 
     public int getCityCount() {
         return cityCount;
     }
 
-    public void setCityCount(int cityCount) {
-        this.cityCount = cityCount;
+    public boolean addCity(City city) {
+        if (cityCount >= 10) {
+            return false;
+        }
+        cities[cityCount] = city;
+        cityCount++;
+        return true;
+    }
+
+    public void removeCityByName(String cityName) {
+        int indexToDelete = -1;
+
+        for (int i = 0; i < this.cityCount; i++) {
+            if (this.cities[i].getName().equalsIgnoreCase(cityName)) {
+                indexToDelete = i;
+                break;
+            }
+        }
+
+        if (indexToDelete != -1) {
+            for (int i = indexToDelete; i < this.cityCount - 1; i++) {
+                this.cities[i] = this.cities[i + 1];
+            }
+            this.cityCount--;
+            this.cities[this.cityCount] = null;
+        }
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        return false;
+        Country country = (Country) o;
+        return id == country.id;
     }
 
     @Override
     public String toString() {
-        return "Country{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", continent='" + continent + '\'' +
-                ", population=" + population +
-                ", code='" + code + '\'' +
-                ", cities=" + Arrays.toString(cities) +
-                ", cityCount=" + cityCount +
-                '}';
+        City[] actualCities = Arrays.copyOf(this.cities, this.cityCount);
+        return "ID: " + id +
+                " | Name: " + name +
+                " | Continent: " + continent +
+                " | Population: " + population +
+                " | Code: " + code +
+                " | City count: " + cityCount +
+                " | Cities: " + Arrays.toString(actualCities);
     }
 }
