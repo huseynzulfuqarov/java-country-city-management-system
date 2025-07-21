@@ -1,14 +1,13 @@
 package org.example;
 
 import org.example.model.ManagementService;
-
 import java.util.Scanner;
 
 public class CountryCityApp {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
 
+        Scanner sc = new Scanner(System.in);
         ManagementService ms = new ManagementService();
 
         while (true) {

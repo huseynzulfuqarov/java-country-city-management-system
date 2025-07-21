@@ -287,9 +287,7 @@ public class ManagementService {
         }
         countryCount--;
         allCountry[countryCount] = null;
-
         System.out.println("Country and all its cities have been deleted.");
-
     }
 
     public void updateCountry() {
