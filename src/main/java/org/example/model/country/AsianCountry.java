@@ -1,7 +1,6 @@
 package org.example.model.country;
 
 import org.example.model.Country;
-
 import java.util.Objects;
 
 public class AsianCountry extends Country {
